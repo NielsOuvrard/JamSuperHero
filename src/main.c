@@ -28,10 +28,9 @@ int window_start(int x, int y)
 int checkInput (void)
 {
     int input = getch();
-    if (input == ERR)
-        return 0;
+    // if (input == ERR)
+    //     return 0;
     if (input == ' ') {
-        printw("okok");
         return 1;
     }
     if (input == 'q') {
@@ -40,29 +39,40 @@ int checkInput (void)
     return 1;
 }
 
+void print_map (char **map, int decal)
+{
+    if (my_arraylen(map) < decal)
+        return;
+    for (int i = 0; map[i]; i++)
+        for (int j = 0; j < COLS && map[i][j + decal]; j++)
+            mvprintw(i, j, "%c", map[i][j + decal]);
+}
+
 int main (int ac, char **av)
 {
 
     initscr();              // Initialise la structure WINDOW et autres paramètres 
-    char **val = filepath_to_arr(av[1]);
-    // for (int i = 0; val[i]; i++)
-    //     my_printf("%s\n", val[i]);
-
+    char **map = filepath_to_arr(av[1]);
+    // for (int i = 0; map[i]; i++)
+        // my_printf("%s\n", map[i]);
 
     int beginInput = '\0';
     while (beginInput != 'a' && beginInput != ' ')
         beginInput = window_start(COLS / 2, LINES / 2);
     clear();
 
-    // nodelay(stdscr, TRUE);
+    nodelay(stdscr, TRUE);
     int input;
+    int decal = 0;
     while ((input = checkInput())) {
-        refresh();
         clear();
-        for (int i = 0; i < 10; i++)
-            mvprintw(i, 0, "|");
+        // refresh();
+        print_map(map, decal++);
+        // for (int i = 0; i < 10; i++)
+        //     mvprintw(i, 0, "|");
+        usleep(100000);
     }
     endwin();
-    free_my_arr(val);
+    free_my_arr(map);
     return 0;
 }
