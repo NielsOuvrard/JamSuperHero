@@ -41,7 +41,7 @@ int checkInput (void)
 
 void print_map (char **map, int decal)
 {
-    if (my_arraylen(map) < decal)
+    if (my_strlen(map[0]) < decal)
         return;
     for (int i = 0; map[i]; i++)
         for (int j = 0; j < COLS && map[i][j + decal]; j++)
