@@ -7,7 +7,7 @@
 
 SRC = 	src/*.c
 
-FLAGS = -g3 -g
+FLAGS = -g3 -g -Wall -Wextra -lncurses
 
 BINARY = JamSuperHero
 
@@ -18,6 +18,7 @@ all:
 		@gcc -c lib/my/*.c
 		@ar rc lib/my/libmy.a *.o
 		@gcc -o $(BINARY) src/*.c $(LIB) $(FLAGS)
+		@rm -Rf *.o
 
 clean:
 		@echo "compilation : [\033[32mSUCCESS\033[0m]"

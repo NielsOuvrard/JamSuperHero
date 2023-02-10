@@ -11,6 +11,8 @@
 #include <sys/types.h>
 #include <sys/uio.h>
 #include <unistd.h>
+#include <ncurses.h>
+#include <stdbool.h>
 
 #define CTOI(x) ((x) - '0')
 #define ITOC(x) ((x) + '0')
