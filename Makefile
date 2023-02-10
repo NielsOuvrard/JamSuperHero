@@ -21,7 +21,6 @@ all:
 		@rm -Rf *.o
 
 clean:
-		@echo "compilation : [\033[32mSUCCESS\033[0m]"
 		@rm -Rf *.o
 		@rm -Rf *.gcno
 		@rm -Rf *.gcda
