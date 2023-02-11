@@ -7,8 +7,11 @@
 
 #include "../include/my.h"
 
+/*filepath_to_arr.c*/
 char **filepath_to_arr (char *filepath);
-
+/*display_art.c*/
+void display_holybat(void);
+void display_jesus(void);
 
 
 int window_start(int x, int y)
@@ -60,8 +63,9 @@ int main (int ac, char **av)
     while (beginInput != 'a' && beginInput != ' ')
         beginInput = window_start(COLS / 2, LINES / 2);
     clear();
-
     nodelay(stdscr, TRUE);
+    display_holybat();
+    display_jesus();
     int input;
     int decal = 0;
     while ((input = checkInput())) {
