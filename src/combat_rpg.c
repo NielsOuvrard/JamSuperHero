@@ -107,7 +107,7 @@ void attack(int *player_hp, int *player_mp, int *ennemi_hp, int ennemi_max_hp, i
 
 int combat_devil(int player_hp)
 {
-    int player_mp = 100, ennemi_hp = 50, ennemi_attack = -20;
+    int player_mp = 100, ennemi_hp = 50, ennemi_attack = -15;
     int option = 1, enter = 0;
     char *ennemi_name = "Devil";
     while (player_hp > 0 && ennemi_hp > 0) {
@@ -124,5 +124,6 @@ int combat_devil(int player_hp)
         }
         usleep(100000);
     }
+    if (player_hp > 0) player_hp += 50;
     return player_hp;
 }

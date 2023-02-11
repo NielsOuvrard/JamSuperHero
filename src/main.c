@@ -6,82 +6,78 @@
 */
 
 #include "../include/my.h"
+#include "../include/superhero.h"
 
-/*filepath_to_arr.c*/
-char **filepath_to_arr (char *filepath);
-/*display_art.c*/
-void display_holybat(void);
-void display_jesus(void);
-int combat_devil(int player_hp);
-
-
-int window_start(int x, int y)
+int checkInput (superhero *data)
 {
-    clear();
-    mvprintw(0 + y - 6, x - 24, "  ____                        _   _                ");
-    mvprintw(1 + y - 6, x - 24, " / ___| _   _ _ __   ___ _ __| | | | ___ _ __ ___  ");
-    mvprintw(2 + y - 6, x - 24, " \\___ \\| | | | '_ \\ / _ \\ '__| |_| |/ _ \\ '__/ _ \\ ");
-    mvprintw(3 + y - 6, x - 24, "  ___) | |_| | |_) |  __/ |  |  _  |  __/ | | (_) |");
-    mvprintw(4 + y - 6, x - 24, " |____/ \\__,_| .__/ \\___|_|  |_| |_|\\___|_|  \\___/ ");
-    mvprintw(5 + y - 6, x - 24, "             |_|                                   ");
-    mvprintw(10 + y - 6, x - 6, "Run Software");
-    mvprintw(11 + y - 6, x - 4, "[Space]");
-    return getch();
-}
-
-int checkInput (void)
-{
-    int input = getch();
-    // if (input == ERR)
-    //     return 0;
-    if (input == ' ') {
-        return 1;
+    data->input = getch();
+    if (data->input == ' ' && data->window_idx == W_GAME &&
+    data->jump == 0 && is_at_ground(data)) {
+        data->jump = JUMP_FORCE;
     }
-    if (input == 'q') {
+    if (data->input == 'q') {
+        return 0;
+    }
+    if (data->input == 'd' && data->window_idx == W_GAME) {
+        throw_bat(data);
+    }
+    if (data->window_idx == W_JESUS && data->input == ' ') {
+        return 0;
+    }
+    if (data->win_option == O_WIN && data->input == ' ') {
+        data->window_idx = W_JESUS;
+        data->win_option = 0;
+    }
+    if (data->window_idx == W_LOOSE  && data->input == ' ') {
         return 0;
     }
     return 1;
 }
 
-void print_map (char **map, int decal)
+superhero init_data (char **av)
 {
-    if (my_strlen(map[0]) < decal)
-        return;
-    for (int i = 0; map[i]; i++)
-        for (int j = 0; j < COLS && map[i][j + decal]; j++)
-            mvprintw(i, j, "%c", map[i][j + decal]);
+    superhero data;
+    data.map = filepath_to_arr(av[1]);
+    data.shift_map = 0;
+    data.y_player = 3;
+    data.jump = 0;
+    data.coin = 0;
+    data.window_idx = 0;
+    data.input = 0;
+    data.bats_remaning = 5;
+    data.bats = NULL;
+    data.win_option = 0;
+    data.y_cross = -4;
+    init_pair(1, COLOR_YELLOW, COLOR_BLACK);
+    init_pair(2, COLOR_GREEN, COLOR_BLACK);
+    init_pair(3, COLOR_CYAN, COLOR_BLACK);
+    init_pair(4, COLOR_BLUE, COLOR_BLACK);
+    init_pair(5, COLOR_MAGENTA, COLOR_BLACK);
+    init_pair(6, COLOR_RED, COLOR_BLACK);
+    return data;
 }
 
 int main (int ac, char **av)
 {
-
-    initscr();              // Initialise la structure WINDOW et autres paramètres 
-    char **map = filepath_to_arr(av[1]);
-    // for (int i = 0; map[i]; i++)
-        // my_printf("%s\n", map[i]);
-
-    int beginInput = '\0';
-    while (beginInput != 'a' && beginInput != ' ')
-        beginInput = window_start(COLS / 2, LINES / 2);
-    clear();
+    initscr();
+    start_color();
+    superhero data = init_data(av);
     nodelay(stdscr, TRUE);
-    display_holybat();
-    display_jesus();
-    int input;
-    int decal = 0;
     keypad(stdscr, TRUE);
+    noecho();
+    while (checkInput(&data)) {
+        refresh();
+        clear();
+        what_window(&data);
+    }
     nodelay(stdscr, FALSE);
     combat_devil(100);
-    nodelay(stdscr, TRUE);
-    while ((input = checkInput())) {
-        clear();
-        // refresh();
-        print_map(map, decal++);
-        // for (int i = 0; i < 10; i++)
-        //     mvprintw(i, 0, "|");
-        usleep(100000);
-    }
     endwin();
-    free_my_arr(map);
-    return 0;
+    free_my_arr(data.map);
+    while (data.bats) {
+        bat *tmp = data.bats;
+        data.bats = data.bats->next;
+        free(tmp);
+    }
+    return ac <= 2 ? 0 : 1;
 }

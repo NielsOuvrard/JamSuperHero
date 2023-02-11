@@ -1,0 +1,3 @@
+gestion erreur map
+    -   pas tous les str de la même taille
+    -   char differents
