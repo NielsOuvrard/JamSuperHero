@@ -16,12 +16,14 @@ int checkInput (superhero *data)
     //     return 0;
 
     // TODO move to input game funct
-    if (data->input == ' ' && data->jump == 0 && is_at_ground(data)) {
+    if (data->input == ' ' && data->window_idx == W_GAME && data->jump == 0 && is_at_ground(data)) {
         data->jump = JUMP_FORCE;
-        return 1;
     }
     if (data->input == 'q') {
         return 0;
+    }
+    if (data->input == 'd' && data->window_idx == W_GAME) {
+        throw_bat(data);
     }
     return 1;
 }
@@ -36,6 +38,8 @@ superhero init_data (char **av)
     data.coin = 0;
     data.window_idx = 0;
     data.input = 0;
+    data.bats_remaning = 5;
+    data.bats = NULL;
     return data;
 }
 
@@ -49,6 +53,7 @@ int main (int ac, char **av)
         refresh();
         clear();
         what_window(&data);
+        mvprintw(0, 0, "");
     }
     endwin();
     free_my_arr(data.map);

@@ -22,3 +22,12 @@ void print_player (int y_player)
     if (y_player > 0)
         mvprintw(y_player, POS_X_PLAYER, "@");
 }
+
+void print_bats (superhero *data)
+{
+    bat *exp = data->bats;
+    while (exp) {
+        mvprintw(exp->y, exp->x, "B");
+        exp = exp->next;
+    }
+}

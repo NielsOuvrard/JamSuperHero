@@ -7,6 +7,12 @@
 
 #pragma once
 
+typedef struct bat {
+    struct bat *next;
+    int x;
+    int y;
+} bat;
+
 typedef struct superhero {
     int window_idx;
     char **map;
@@ -15,7 +21,10 @@ typedef struct superhero {
     int y_player;
     int jump;
     int coin;
+    int bats_remaning;
+    bat *bats;
 } superhero;
+
 
 #define GRAVITY 2
 #define POS_X_PLAYER 5
@@ -52,3 +61,11 @@ bool is_at_ground (superhero *data);
 void print_map (char **map, int decal);
 
 void print_player (int y_player);
+
+void print_bats (superhero *data);
+
+// * ////////////////////////////////////////////////////////////////////// BATS
+
+void throw_bat (superhero *data);
+
+void ahead_bat (superhero *data);

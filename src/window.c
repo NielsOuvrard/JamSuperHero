@@ -32,6 +32,8 @@ void window_game (superhero *data)
     gravity(data);
     print_player(data->y_player);
     get_coin(data);
+    print_bats(data);
+    ahead_bat(data);
     usleep(100000);
 }
 

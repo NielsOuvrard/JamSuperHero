@@ -31,8 +31,9 @@ void player_stair (superhero *data)
     if (data->map[data->y_player] && data->map[data->y_player - 1]              // check != NULL
     && data->map[data->y_player][POS_X_PLAYER + data->shift_map + 1] == 'X'     // check next is ground
     && data->map[data->y_player - 1][POS_X_PLAYER + data->shift_map + 1] != 'X' // check next up is not ground
-    )
+    ) {
         data->y_player--;
+    }
 }
 
 void get_coin (superhero *data)
