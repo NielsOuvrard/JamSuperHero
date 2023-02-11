@@ -46,12 +46,31 @@ bat *destroy_bat (bat *exp, int idx)
     return begin;
 }
 
+void destroy_wall (superhero *data, int y, int x)
+{
+    data->map[y][x + data->shift_map] = ' ';
+    if (y > 0 && data->map[y - 1][x + data->shift_map] == 'W')
+        destroy_wall(data, y - 1, x);
+    if (data->map[y + 1] && data->map[y + 1][x + data->shift_map] == 'W')
+        destroy_wall(data, y + 1, x);
+    if (x + data->shift_map > 0 && data->map[y][x + data->shift_map - 1] == 'W')
+        destroy_wall(data, y, x - 1);
+    if (data->map[y][x + data->shift_map + 1] == 'W')
+        destroy_wall(data, y, x + 1);
+}
+
 void ahead_bat (superhero *data)
 {
     bat *exp = data->bats;
     bat *begin = data->bats;
     for (int i = 0; exp; i++) {
-        if (!data->map[exp->y][exp->x + data->shift_map] ||
+        if (data->map[exp->y][exp->x + data->shift_map] == 'W') {
+            destroy_wall(data, exp->y, exp->x);
+            begin = destroy_bat(begin, i);
+            data->bats_remaning++;
+            exp = begin;
+            i = -1;
+        } else if (!data->map[exp->y][exp->x + data->shift_map] ||
         data->map[exp->y][exp->x + data->shift_map] == 'X') {
             begin = destroy_bat(begin, i);
             data->bats_remaning++;

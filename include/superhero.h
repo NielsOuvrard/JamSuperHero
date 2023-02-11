@@ -56,7 +56,7 @@ void what_window (superhero *data);
 
 void gravity (superhero *data);
 
-void player_stair (superhero *data);
+void player_colision (superhero *data);
 
 void get_coin (superhero *data);
 

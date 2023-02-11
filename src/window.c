@@ -39,6 +39,7 @@ void window_game (superhero *data)
     print_player(data->y_player);
     print_bats(data);
     usleep(50000);
+    attron(COLOR_PAIR(5));
     mvprintw(0, 0, "Biblical quotes : %d", data->coin);
     if (data->win_option == O_JUST_WIN || data->win_option == O_WIN) {
         print_cross(data->y_cross);
@@ -51,7 +52,7 @@ void window_game (superhero *data)
         usleep(100000);
         return;
     }
-    player_stair(data);
+    player_colision(data);
     gravity(data);
     get_coin(data);
     ahead_bat(data);

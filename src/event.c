@@ -26,16 +26,18 @@ void gravity (superhero *data)
         data->y_player++;
 }
 
-void player_stair (superhero *data)
+void player_colision (superhero *data)
 {
-    if (data->map[data->y_player] && data->map[data->y_player - 1]              // check != NULL
-    && data->map[data->y_player][POS_X_PLAYER + data->shift_map + 1] == 'X'     // check next is ground
-    && data->map[data->y_player - 1][POS_X_PLAYER + data->shift_map + 1] != 'X' // check next up is not ground
-    ) {
-        data->y_player--;
-    } else if (data->map[data->y_player] && data->map[data->y_player - 1]              // check != NULL
-    && data->map[data->y_player][POS_X_PLAYER + data->shift_map + 1] == 'X'     // check next is ground
-    && data->map[data->y_player - 1][POS_X_PLAYER + data->shift_map + 1] == 'X' // check next up is not ground
+    // if (data->map[data->y_player] && data->map[data->y_player - 1]              // check != NULL
+    // && data->map[data->y_player][POS_X_PLAYER + data->shift_map + 1] == 'X'     // check next is ground
+    // && data->map[data->y_player - 1][POS_X_PLAYER + data->shift_map + 1] != 'X' // check next up is not ground
+    // ) {
+    //     data->y_player--;
+    // } else
+    if (data->map[data->y_player]              // check != NULL
+    && (data->map[data->y_player][POS_X_PLAYER + data->shift_map] == 'X'     // check is ground
+    || data->map[data->y_player][POS_X_PLAYER + data->shift_map] == 'W')     // check is ground
+    // && data->map[data->y_player - 1][POS_X_PLAYER + data->shift_map + 1] == 'X' // check next up is not ground
     ) {
         data->window_idx = W_LOOSE;
     }
@@ -43,7 +45,9 @@ void player_stair (superhero *data)
 
 void get_coin (superhero *data)
 {
-    if (data->map[data->y_player][POS_X_PLAYER + data->shift_map] == '0') {
+    if (data->map[data->y_player][POS_X_PLAYER + data->shift_map] == '0' ||
+    data->map[data->y_player][POS_X_PLAYER + data->shift_map + 1] == '0' ||
+    data->map[data->y_player - 1][POS_X_PLAYER + data->shift_map] == '0') {
         data->map[data->y_player][POS_X_PLAYER + data->shift_map] = ' ';
         data->coin++;
     }
