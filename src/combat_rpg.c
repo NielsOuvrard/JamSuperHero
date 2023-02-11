@@ -45,22 +45,30 @@ void attack(int *player_hp, int *player_mp, int *ennemi_hp, int ennemi_max_hp, i
         }
     }
     if (option == 3) {
-        (*player_mp) += 30;
         if (*player_mp > 100) {
-            (*player_mp) = 100;
             mvprintw(y + 20, x - 10, "Holybat is full MP");
         } else {
+            (*player_mp) += 30;
+            if (*player_mp > 100) {
+                (*player_mp) = 100;
+            }
             mvprintw(y + 20, x - 10, "Holybat gain 30 MP");
         }
     }
-    if (option == 4 && *player_mp > 19) {
-        (*player_hp) += 30;
-        (*player_mp) += -20;
-        if (*player_hp > 100) {
-            (*player_hp) = 100;
-            mvprintw(y + 20, x - 10, "Holybat is full HP");
+    if (option == 4) {
+        if (*player_mp > 19) {
+            if (*player_hp > 100) {
+                mvprintw(y + 20, x - 10, "Holybat is full HP");
+            } else {
+                (*player_hp) += 30;
+                (*player_mp) += -20;
+                if (*player_hp > 100) {
+                    (*player_hp) = 100;
+                }
+                mvprintw(y + 20, x - 10, "Holybat gain 30 HP");
+            }
         } else {
-            mvprintw(y + 20, x - 10, "Holybat gain 30 HP");
+            mvprintw(y + 20, x - 10, "Holybat doesn't have enough MP");
         }
     }
     critique = rand() % 21;
@@ -70,7 +78,7 @@ void attack(int *player_hp, int *player_mp, int *ennemi_hp, int ennemi_max_hp, i
     }
     (*ennemi_hp) += dammage;
     if (*ennemi_hp <= 0) {
-        mvprintw(2 + y + 20, x - 10, "Ennemi is dead");
+        mvprintw(2 + y + 20, x - 10, "%s is dead", ennemi_name);
         getch();
         return;
     }
@@ -85,11 +93,13 @@ void attack(int *player_hp, int *player_mp, int *ennemi_hp, int ennemi_max_hp, i
         mvprintw(2 + y + 20, x - 10, "%s does %d damage", ennemi_name, dammage * -1);
     }
     if (ennemi_option == 2) {
-        (*ennemi_hp) += ennemi_attack * -1;
         if (*ennemi_hp > ennemi_max_hp) {
-            (*ennemi_hp) = ennemi_max_hp;
-            mvprintw(2 + y + 20, x - 10, "%s is full HP", ennemi_name);
+            mvprintw(2 + y + 20, x - 10, "%s is full HP", ennemi_name);        
         } else {
+            (*ennemi_hp) += ennemi_attack * -1;
+            if (*ennemi_hp > ennemi_max_hp) {
+                (*ennemi_hp) = ennemi_max_hp;
+            }
             mvprintw(2 + y + 20, x - 10, "%s gain %d HP", ennemi_name, ennemi_attack * -1);
         }
     }
@@ -112,9 +122,12 @@ int combat_devil(int player_hp)
     char *ennemi_name = "Devil";
     while (player_hp > 0 && ennemi_hp > 0) {
         clear();
+        attron(COLOR_PAIR(7));
         player_rpg_art(COLS / 2, LINES / 2);
         player_tag(COLS / 2, LINES / 2, player_hp, player_mp, "Holybat");
+        attron(COLOR_PAIR(5));
         demon_rpg_art(COLS / 2, LINES / 2);
+        attron(COLOR_PAIR(7));
         ennemi_tag(COLS / 2, LINES / 2, ennemi_hp, ennemi_name);
         show_attack_option(COLS / 2, LINES / 2, option);
         Imput_rpg(&option, &enter);
