@@ -11,7 +11,7 @@
 void window_start(superhero *data)
 {
     if (data->input == ' ')
-        data->window_idx = W_GAME;
+        data->window_idx = W_LORE;
     int x = COLS / 2;
     int y = LINES / 2;
     mvprintw(0 + y - 6, x - 24, "  ____                        _   _                ");
@@ -25,16 +25,64 @@ void window_start(superhero *data)
     usleep(100000);
 }
 
+void print_cross (int y)
+{
+    mvprintw(y++, 20, " # ");
+    mvprintw(y++, 20, "###");
+    mvprintw(y++, 20, " # ");
+    mvprintw(y++, 20, " # ");
+}
+
 void window_game (superhero *data)
 {
-    player_stair(data);
-    print_map(data->map, data->shift_map++);
-    gravity(data);
+    print_map(data->map, data->shift_map);
     print_player(data->y_player);
-    get_coin(data);
     print_bats(data);
-    ahead_bat(data);
     usleep(100000);
+    mvprintw(0, 0, "coins : %d", data->coin);
+    if (data->win_option == O_JUST_WIN || data->win_option == O_WIN) {
+        print_cross(data->y_cross);
+        if (data->y_cross < 7) {
+            data->y_cross++;
+        } else {
+            mvprintw(4, 30, "Jesus is evrywhere");
+            data->win_option = O_WIN;
+        }
+        usleep(100000);
+        return;
+    }
+    player_stair(data);
+    gravity(data);
+    get_coin(data);
+    ahead_bat(data);
+    if (data->map[0][data->shift_map + 40] == '\0') {
+        data->win_option = O_JUST_WIN;
+    }
+    data->shift_map++;
+}
+
+void window_lore (superhero *data)
+{
+    int x = COLS / 2;
+    int y = LINES / 2;
+    char str[] = "You're HailBat, the famous superHero who speak to bats, and hear Jesus's voice !";
+    char str2[] = "Go find our saver !";
+    mvprintw(y, x - (my_strlen(str) / 2), "%s", str);
+    mvprintw(y + 1, x - (my_strlen(str2) / 2), "%s", str2);
+    if (data->input == ' ')
+        data->window_idx = W_HOLYBAT;
+    usleep(100000);
+}
+
+void window_win (superhero *data)
+{
+    display_jesus();
+}
+
+void window_HolyBat (superhero *data)
+{
+    display_holybat();
+    data->window_idx = W_GAME;
 }
 
 void what_window (superhero *data)
@@ -45,6 +93,15 @@ void what_window (superhero *data)
         break;
     case W_GAME:
         window_game(data);
+        break;
+    case W_JESUS:
+        window_win(data);
+        break;
+    case W_HOLYBAT:
+        window_HolyBat(data);
+        break;
+    case W_LORE:
+        window_lore(data);
         break;
     default:
         break;
