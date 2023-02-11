@@ -57,5 +57,10 @@ int main (int ac, char **av)
     }
     endwin();
     free_my_arr(data.map);
+    while (data.bats) {
+        bat *tmp = data.bats;
+        data.bats = data.bats->next;
+        free(tmp);
+    }
     return 0;
 }
