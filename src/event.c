@@ -47,6 +47,7 @@ void get_coin (superhero *data)
 {
     if (data->map[data->y_player][POS_X_PLAYER + data->shift_map] == '0' ||
     data->map[data->y_player][POS_X_PLAYER + data->shift_map + 1] == '0' ||
+    data->map[data->y_player - 1][POS_X_PLAYER + data->shift_map + 1] == '0' ||
     data->map[data->y_player - 1][POS_X_PLAYER + data->shift_map] == '0') {
         data->map[data->y_player][POS_X_PLAYER + data->shift_map] = ' ';
         data->coin++;
