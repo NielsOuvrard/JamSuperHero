@@ -129,6 +129,69 @@ int Jesus_art(int x, int y, int decal)
     return getch();
 }
 
+void player_rpg_art(int x, int y)
+{
+    mvprintw(1 + y - 5, x - 50, "             .PB!");
+    mvprintw(2 + y - 5, x - 50, "           ?#&&&B7");
+    mvprintw(3 + y - 5, x - 50, "          G&#YG###B~");
+    mvprintw(4 + y - 5, x - 50, "         5&&#75###B#P.");
+    mvprintw(5 + y - 5, x - 50, "        J&5YGP5P5Y!J@B:");
+    mvprintw(6 + y - 5, x - 50, "       7&&Y~YJ?JJJ~J&##7");
+    mvprintw(7 + y - 5, x - 50, "      ~&&@&~!~~~~!^B@&G57");
+    mvprintw(8 + y - 5, x - 50, "     :&@@@@#~    ^P@&@Y7?5~");
+    mvprintw(9 + y - 5, x - 50, "     &@@@@&&@#GPB&@#@@B77#@G.");
+    mvprintw(10 + y - 5, x - 50, "    J@@@@@B@@@@@@&B@@@&?7#@@#");
+    mvprintw(11 + y - 5, x - 50, "   .&@@@@&#@@@@@#B@@@@@G5&@@@#.");
+    mvprintw(12 + y - 5, x - 50, "   G@@@@@&B@@@@B#@@@@@G5YPB&@@&!");
+    mvprintw(13 + y - 5, x - 50, "  7@@@@@@@#@@@B&@@@@@&!!!!~Y@@@@P");
+    mvprintw(14 + y - 5, x - 50, " .&@@@@@@@&@@B&@@@@@@@P?7!!7&@@@@B");
+    mvprintw(15 + y - 5, x - 50, " Y@@@@@@@@&&#@@@@@@@@@@@BGG&@@@@@@7");
+    mvprintw(16 + y - 5, x - 50, " &@@@@@@@&  @@@@@@@@@@@@#GB@@@@@@@^");
+    mvprintw(17 + y - 5, x - 50, "!@@@@@@@      @@@@@@@@@@#G.G@@@@&!");
+    mvprintw(18 + y - 5, x - 50, "G@@@@@@@@@  @@@@@@@@@@@@#B  J&&5.");
+    mvprintw(19 + y - 5, x - 50, "#@@@@@@@@@  @@@@@@@@@@@@&#.");
+}
+
+void demon_rpg_art(int x, int y)
+{
+    mvprintw(1 + y - 15, x, "  .:~?YPPGGBBBPJ^.    .^JPBBBGGP5Y?~:.");
+    mvprintw(2 + y - 15, x, ".!5G##GGGBB#&&&@&.    .&@&&&#BBGGG##G5!.");
+    mvprintw(3 + y - 15, x, "    ^&&&&&&&#GB&! .!~. !&BG#&&&&&&&^");
+    mvprintw(4 + y - 15, x, "    ..^&@#BB##&@~^#&&7 ~@&##BB#@&^..");
+    mvprintw(5 + y - 15, x, "      :J.  .?@@&B#&@&Y5G&@@?.  .J:");
+    mvprintw(6 + y - 15, x, "            ~#P#&&&&&&&&&5#~");
+    mvprintw(7 + y - 15, x, "              5#~5@@@@7^&G");
+    mvprintw(8 + y - 15, x, "             .BY G&@@@? ^@^");
+    mvprintw(9 + y - 15, x, "              BG:&@@@@&..#^");
+    mvprintw(10 + y - 15, x, "                 &@&&&&:");
+}
+
+void player_tag(int x, int y, int hp, int mp, char *name)
+{
+    mvprintw(0 + y - 10, x - 50, "____________");
+    mvprintw(1 + y - 10, x - 50, "  %s", name);
+    mvprintw(2 + y - 10, x - 50, "  HP = %d", hp);
+    mvprintw(3 + y - 10, x - 50, "  MP = %d", mp);
+    mvprintw(4 + y - 10, x - 50, "____________");
+}
+
+void ennemi_tag(int x, int y, int hp, char *name)
+{
+    mvprintw(0 + y - 20, x, "____________");
+    mvprintw(1 + y - 20, x, "  %s", name);
+    mvprintw(2 + y - 20, x, "  HP = %d", hp);
+    mvprintw(3 + y - 20, x, "____________");
+}
+
+void show_attack_option(int x, int y, int option)
+{
+    mvprintw(1 + y, x + 5, "Bat Attack");
+    mvprintw(3 + y, x + 5, "Holy Citation");
+    mvprintw(5 + y, x + 5, "Jesus's kiss");
+    mvprintw(7 + y, x + 5, "Holy Prayer");
+    mvprintw(-1 + y + (option * 2), x, "-->");
+}
+
 void display_jesus(void)
 {
     int beginInput = '\0';

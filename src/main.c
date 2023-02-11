@@ -12,6 +12,7 @@ char **filepath_to_arr (char *filepath);
 /*display_art.c*/
 void display_holybat(void);
 void display_jesus(void);
+int combat_devil(int player_hp);
 
 
 int window_start(int x, int y)
@@ -68,6 +69,10 @@ int main (int ac, char **av)
     display_jesus();
     int input;
     int decal = 0;
+    keypad(stdscr, TRUE);
+    nodelay(stdscr, FALSE);
+    combat_devil(100);
+    nodelay(stdscr, TRUE);
     while ((input = checkInput())) {
         clear();
         // refresh();
