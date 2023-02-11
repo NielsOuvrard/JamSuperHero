@@ -28,6 +28,9 @@ int checkInput (superhero *data)
         data->window_idx = W_JESUS;
         data->win_option = 0;
     }
+    if (data->window_idx == W_LOOSE  && data->input == ' ') {
+        return 0;
+    }
     return 1;
 }
 
@@ -66,5 +69,5 @@ int main (int ac, char **av)
         data.bats = data.bats->next;
         free(tmp);
     }
-    return 0;
+    return ac <= 2 ? 0 : 1;
 }

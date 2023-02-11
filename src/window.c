@@ -38,8 +38,8 @@ void window_game (superhero *data)
     print_map(data->map, data->shift_map);
     print_player(data->y_player);
     print_bats(data);
-    usleep(100000);
-    mvprintw(0, 0, "coins : %d", data->coin);
+    usleep(50000);
+    mvprintw(0, 0, "Biblical quotes : %d", data->coin);
     if (data->win_option == O_JUST_WIN || data->win_option == O_WIN) {
         print_cross(data->y_cross);
         if (data->y_cross < 7) {
@@ -74,7 +74,7 @@ void window_lore (superhero *data)
     usleep(100000);
 }
 
-void window_win (superhero *data)
+void window_win ()
 {
     display_jesus();
 }
@@ -83,6 +83,19 @@ void window_HolyBat (superhero *data)
 {
     display_holybat();
     data->window_idx = W_GAME;
+}
+
+void window_loose ()
+{
+    int x = COLS / 2;
+    int y = LINES / 2;
+    char str[] = "Joshua 1:9";
+    char str2[] = "Have I not commanded you? Be strong and courageous.";
+    char str3[] = "Do not be frightened, and do not be dismayed, for the LORD your God is with you wherever you go.";
+    mvprintw(y + 0, x - (my_strlen(str)  / 2), "%s", str);
+    mvprintw(y + 1, x - (my_strlen(str2) / 2), "%s", str2);
+    mvprintw(y + 2, x - (my_strlen(str3) / 2), "%s", str3);
+    usleep(100000);
 }
 
 void what_window (superhero *data)
@@ -95,13 +108,16 @@ void what_window (superhero *data)
         window_game(data);
         break;
     case W_JESUS:
-        window_win(data);
+        window_win();
         break;
     case W_HOLYBAT:
         window_HolyBat(data);
         break;
     case W_LORE:
         window_lore(data);
+        break;
+    case W_LOOSE:
+        window_loose();
         break;
     default:
         break;

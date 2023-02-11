@@ -33,6 +33,11 @@ void player_stair (superhero *data)
     && data->map[data->y_player - 1][POS_X_PLAYER + data->shift_map + 1] != 'X' // check next up is not ground
     ) {
         data->y_player--;
+    } else if (data->map[data->y_player] && data->map[data->y_player - 1]              // check != NULL
+    && data->map[data->y_player][POS_X_PLAYER + data->shift_map + 1] == 'X'     // check next is ground
+    && data->map[data->y_player - 1][POS_X_PLAYER + data->shift_map + 1] == 'X' // check next up is not ground
+    ) {
+        data->window_idx = W_LOOSE;
     }
 }
 

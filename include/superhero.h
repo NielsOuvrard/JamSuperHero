@@ -35,9 +35,10 @@ typedef struct superhero {
 // * WINDOW
 #define W_START     0
 #define W_GAME      1
-#define W_JESUS       2
-#define W_HOLYBAT     3
+#define W_JESUS     2
+#define W_HOLYBAT   3
 #define W_LORE      4
+#define W_LOOSE     5
 
 #define O_JUST_WIN  1
 #define O_WIN       2
