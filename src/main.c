@@ -71,11 +71,7 @@ int main (int ac, char **av)
         clear();
         what_window(&data);
     }
-    nodelay(stdscr, FALSE);
-    combat_satan(100);
-    combat_brimstone(100);
-    combat_pentagram(100);
-    combat_devil(100);
+    debut_rpg(av[2]);
     endwin();
     free_my_arr(data.map);
     while (data.bats) {
