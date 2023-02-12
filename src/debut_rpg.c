@@ -32,9 +32,9 @@ void afficher_map(jeux *perso)
     }
 }
 
-jeux *init_pos_perso(char **map, jeux *perso)
+jeux *init_pos_perso(char **map)
 {
-    perso = malloc(sizeof(jeux));
+    jeux *perso = malloc(sizeof(jeux));
     perso->partie = 100;
     perso->map = map;
     perso->deja_fait = 0;
@@ -67,9 +67,10 @@ void mouvement(int key, jeux *perso)
         perso->partie = 0;
 }
 
-void affichage_jeux(char **map)
+void debut_rpg(char *filepath)
 {
-    jeux *perso = init_pos_perso(map, perso);
+    char **map = filepath_to_arr(filepath);
+    jeux *perso = init_pos_perso(map);
     int key = 0;
     refresh();
     afficher_map(perso);
@@ -82,19 +83,4 @@ void affichage_jeux(char **map)
         usleep(50000);
         refresh();
     }
-}
-
-void debut_rpg(char *filepath)
-{
-    int fd = 0;
-    fd = open(filepath, O_RDONLY);
-    if (fd <= 0) {
-        return;
-    }
-    char *buffer = malloc(sizeof(char) * 2906);
-    read(fd, buffer, 2906);
-    buffer[2905] = '\0';
-    close(fd);
-    char **map = my_str_to_word_array(buffer);
-    affichage_jeux(map);
 }
