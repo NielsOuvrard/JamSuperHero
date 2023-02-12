@@ -14,8 +14,10 @@ void perso_left(jeux *perso)
     }
     if (perso->map[perso->y][perso->x - 1] == 'E') {
         combat(perso);
-        if (perso->partie == 0) {
-            /*fin_partie()*/;
+        if (perso->partie <= 0) {
+            clear();
+            mvprintw(LINES / 2, COLS / 2 - 20, "I prayed every day, why was Jesus not with me?");
+            getch();
         } else {
             perso->map[perso->y][perso->x - 1] = ' ';
         }
@@ -33,8 +35,10 @@ void perso_right(jeux *perso)
     }
     if (perso->map[perso->y][perso->x + 1] == 'E') {
         combat(perso);
-        if (perso->partie == 0) {
-            /*fin_partie()*/;
+        if (perso->partie <= 0) {
+            clear();
+            mvprintw(LINES / 2, COLS / 2 - 20, "I prayed every day, why was Jesus not with me?");
+            getch();
         } else {
             perso->map[perso->y][perso->x + 1] = ' ';
         }
@@ -52,8 +56,10 @@ void perso_down(jeux *perso)
     }
     if (perso->map[perso->y + 1][perso->x] == 'E') {
         combat(perso);
-        if (perso->partie == 0) {
-            /*fin_partie()*/;
+        if (perso->partie <= 0) {
+            clear();
+            mvprintw(LINES / 2, COLS / 2 - 20, "I prayed every day, why was Jesus not with me?");
+            getch();
         } else {
             perso->map[perso->y + 1][perso->x] = ' ';
         }
@@ -71,8 +77,10 @@ void perso_up(jeux *perso)
     }
     if (perso->map[perso->y - 1][perso->x] == 'E') {
         combat(perso);
-        if (perso->partie == 0) {
-            /*fin_partie()*/;
+        if (perso->partie <= 0) {
+            clear();
+            mvprintw(LINES / 2, COLS / 2 - 20, "I prayed every day, why was Jesus not with me?");
+            getch();
         } else {
             perso->map[perso->y - 1][perso->x] = ' ';
         }

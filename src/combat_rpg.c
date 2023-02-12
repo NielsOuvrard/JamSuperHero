@@ -141,7 +141,6 @@ int combat_devil(int player_hp)
             enter = 0;
         }
     }
-    if (player_hp > 0) player_hp += 30;
     return player_hp;
 }
 
@@ -168,7 +167,6 @@ int combat_pentagram(int player_hp)
         }
         usleep(100000);
     }
-    if (player_hp > 0) player_hp += 30;
     return player_hp;
 }
 
@@ -195,7 +193,6 @@ int combat_brimstone(int player_hp)
         }
         usleep(100000);
     }
-    if (player_hp > 0) player_hp += 30;
     return player_hp;
 }
 
@@ -254,6 +251,5 @@ int combat_satan(int player_hp)
         }
         usleep(100000);
     }
-    if (player_hp > 0) player_hp += 30;
     return player_hp;
 }

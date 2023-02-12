@@ -13,13 +13,22 @@ void win_condition(jeux *perso)
 {
     if (perso->y == 0 && perso->x == 85) {
         perso->partie = -1;
+        clear();
+        mvprintw(LINES / 2, COLS / 2, "You and Jesus defeated Satan, you found");
+        getch();
     }
 }
 
 void afficher_map(jeux *perso)
 {
     for (int i = 0; perso->map[i] ; i++) {
-        printw(perso->map[i]);
+        for (int j = 0; perso->map[i][j]; j++) {
+            if (perso->map[i][j] == '#') attron(COLOR_PAIR(7));
+            if (perso->map[i][j] == 'E') attron(COLOR_PAIR(6));
+            if (perso->map[i][j] == 'P') attron(COLOR_PAIR(1));
+            addch(perso->map[i][j]);
+        }
+        move(i + 1, 0);
     }
 }
 
@@ -73,8 +82,6 @@ void affichage_jeux(char **map)
         usleep(50000);
         refresh();
     }
-    endwin();
-    exit(0);
 }
 
 void debut_rpg(char *filepath)
