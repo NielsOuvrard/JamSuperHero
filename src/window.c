@@ -75,9 +75,15 @@ void window_lore (superhero *data)
     usleep(100000);
 }
 
-void window_win ()
+void Jesus_art(int x, int y, int decal);
+
+void window_win (superhero *data)
 {
-    display_jesus();
+    Jesus_art(COLS / 2, LINES / 2, data->decal_jesus);
+    data->decal_jesus--;
+    if (data->decal_jesus < -200)
+        data->decal_jesus = 150;
+    usleep(100000);
 }
 
 void window_HolyBat (superhero *data)
@@ -109,7 +115,7 @@ void what_window (superhero *data)
         window_game(data);
         break;
     case W_JESUS:
-        window_win();
+        window_win(data);
         break;
     case W_HOLYBAT:
         window_HolyBat(data);

@@ -25,6 +25,7 @@ typedef struct superhero {
     bat *bats;
     int win_option;
     int y_cross;
+    int decal_jesus;
 } superhero;
 
 
