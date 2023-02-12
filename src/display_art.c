@@ -375,7 +375,8 @@ void display_jesus(void)
     int decal = 150;
     while (beginInput != 'a' && beginInput != ' ') {
         clear();
-        beginInput = Jesus_art(COLS / 2, LINES / 2, decal);
+        Jesus_art(COLS / 2, LINES / 2, decal);
+        beginInput = getch();
         decal--;
         if (decal < -200) decal = 150;
         usleep(100000);
