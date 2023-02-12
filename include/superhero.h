@@ -86,4 +86,11 @@ void display_holybat(void);
 void display_jesus(void);
 
 // * //////////////////////////////////////////////////////////////////////// RPG COMBAT
+
 int combat_devil(int player_hp);
+
+int combat_pentagram(int player_hp);
+
+int combat_brimstone(int player_hp);
+
+int combat_satan(int player_hp);

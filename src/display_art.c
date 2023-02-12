@@ -154,16 +154,84 @@ void player_rpg_art(int x, int y)
 
 void demon_rpg_art(int x, int y)
 {
-    mvprintw(1 + y - 15, x, "  .:~?YPPGGBBBPJ^.    .^JPBBBGGP5Y?~:.");
-    mvprintw(2 + y - 15, x, ".!5G##GGGBB#&&&@&.    .&@&&&#BBGGG##G5!.");
-    mvprintw(3 + y - 15, x, "    ^&&&&&&&#GB&! .!~. !&BG#&&&&&&&^");
-    mvprintw(4 + y - 15, x, "    ..^&@#BB##&@~^#&&7 ~@&##BB#@&^..");
-    mvprintw(5 + y - 15, x, "      :J.  .?@@&B#&@&Y5G&@@?.  .J:");
-    mvprintw(6 + y - 15, x, "            ~#P#&&&&&&&&&5#~");
-    mvprintw(7 + y - 15, x, "              5#~5@@@@7^&G");
-    mvprintw(8 + y - 15, x, "             .BY G&@@@? ^@^");
-    mvprintw(9 + y - 15, x, "              BG:&@@@@&..#^");
-    mvprintw(10 + y - 15, x, "                 &@&&&&:");
+    mvprintw(1 + y - 16, x, "  .:~?YPPGGBBBPJ^.    .^JPBBBGGP5Y?~:.");
+    mvprintw(2 + y - 16, x, ".!5G##GGGBB#&&&@&.    .&@&&&#BBGGG##G5!.");
+    mvprintw(3 + y - 16, x, "    ^&&&&&&&#GB&! .!~. !&BG#&&&&&&&^");
+    mvprintw(4 + y - 16, x, "    ..^&@#BB##&@~^#&&7 ~@&##BB#@&^..");
+    mvprintw(5 + y - 16, x, "      :J.  .?@@&B#&@&Y5G&@@?.  .J:");
+    mvprintw(6 + y - 16, x, "            ~#P#&&&&&&&&&5#~");
+    mvprintw(7 + y - 16, x, "              5#~5@@@@7^&G");
+    mvprintw(8 + y - 16, x, "             .BY G&@@@? ^@^");
+    mvprintw(9 + y - 16, x, "              BG:&@@@@&..#^");
+    mvprintw(10 + y - 16, x, "                 &@&&&&:");
+}
+
+void pentagram_rpg_art(int x, int y)
+{
+    mvprintw(1 + y - 16, x, "           :!5G##########G5!:");
+    mvprintw(2 + y - 16, x, "        :5BBY!:.        .:!YPP?:");
+    mvprintw(3 + y - 16, x, "     .5&?!~                  ^~?&5.");
+    mvprintw(4 + y - 16, x, "    5@5.  &#?.            .?#&. .5@5");
+    mvprintw(5 + y - 16, x, "  :&&.    ^@PPB?.      .?BPP@~    .#@:");
+    mvprintw(6 + y - 16, x, " ^@G       5& .7GG7. !GG7. &P       P@^");
+    mvprintw(7 + y - 16, x, ".@B         &P   ^BBBB~   P&         B@.");
+    mvprintw(8 + y - 16, x, "G@.         :&^!GG! .7GG^^@:         .@G");
+    mvprintw(9 + y - 16, x, "@#         .!B#J.      .~@P~.         #@");
+    mvprintw(10 + y - 16, x, "@P      .!PGJ.GP        G& ?GP!.      P@");
+    mvprintw(11 + y - 16, x, "@&    ~PGJ.   .@!      ~@.   .JGP~    &@");
+    mvprintw(12 + y - 16, x, "J@..Y#@&5YY555JJ@^Y555YGG5555YY5&@#Y..@J");
+    mvprintw(13 + y - 16, x, " PG.            B#   .B5            .#P");
+    mvprintw(14 + y - 16, x, "  B&.           .@?  ?@.           .&&.");
+    mvprintw(15 + y - 16, x, "   G@?           ~@..@!           7@G");
+    mvprintw(16 + y - 16, x, "    ^#&7          G&&G          7&&^");
+    mvprintw(17 + y - 16, x, "      ^G&G~.       &&       .~G&G^");
+    mvprintw(18 + y - 16, x, "         ~5BBP?~:..~~..:~?PBB5~");
+    mvprintw(19 + y - 16, x, "            75B&&@@##@@&&B57");
+}
+
+void brimstone_rpg_art(int x, int y)
+{
+    mvprintw(1 + y - 16, x, "             .!??!.");
+    mvprintw(2 + y - 16, x, "              ^@@~");
+    mvprintw(3 + y - 16, x, "              :@@^");
+    mvprintw(4 + y - 16, x, "        !&&&&&&@@&&&&&&!");
+    mvprintw(5 + y - 16, x, "        :!^^^^?@@J^^^^!:");
+    mvprintw(6 + y - 16, x, "      J.......~@@7.......7^");
+    mvprintw(7 + y - 16, x, "      @@&&&&&&@@@@&&&&&&&@~");
+    mvprintw(8 + y - 16, x, "      !       ^@@~       ^:");
+    mvprintw(9 + y - 16, x, "    :~~~^.    :@@^    ..:::.");
+    mvprintw(10 + y - 16, x, " :B@@@&@@@@#5::@@^ ?B&@&###&&B~");
+    mvprintw(11 + y - 16, x, "!@&!.    .:7P&&@@#@&5^.     ^#@Y");
+    mvprintw(12 + y - 16, x, "&@^           #@@@!           @@");
+    mvprintw(13 + y - 16, x, "G@B.       :Y&@P?##?:       .P@&");
+    mvprintw(14 + y - 16, x, " ?&@#GPGB&@@&J.   ~G&&&BBGB&@@G.");
+    mvprintw(15 + y - 16, x, "   *~?YYY?~*         *~777!^*");
+}
+
+void satan_rpg_art(int x, int y)
+{
+    mvprintw(1 + y - 16, x, "                           ."    );
+    mvprintw(2 + y - 16, x, "                    .::...:^.");
+    mvprintw(3 + y - 16, x, "         :YGY^ ..  J@@@@#7.");
+    mvprintw(4 + y - 16, x, "        #@@@@@PJ#7J@@@@@@.  !:    ::.");
+    mvprintw(5 + y - 16, x, "   .~   B@@@@@@@@@@@@@@@7   !#    .^J?:");
+    mvprintw(6 + y - 16, x, "    PY.  Y&@@@@@@&B&@@@! .:J#:      .Y5~");
+    mvprintw(7 + y - 16, x, "    .B&BYJ!Y@@&&@@&@@@@&&@#J.       .~5Y");
+    mvprintw(8 + y - 16, x, "      .7G@@@&P&@@@@@Y.^J!:     .:^^.~7J5");
+    mvprintw(9 + y - 16, x, "       .!Y?!. :@@@@@B:   ..    .~77#BJ?Y");
+    mvprintw(10 + y - 16, x, "     .7?J: ..^P@@@@@@@@&@@&5: 7: P@##&G~");
+    mvprintw(11 + y - 16, x, "     ?J7^^G&@@@@@@@@@@@@@@@@&!!@7^P@BB@?");
+    mvprintw(12 + y - 16, x, "    .J?!G@@@@@&&#####BBG#@@@&@JB@Y7&@&P:");
+    mvprintw(13 + y - 16, x, "    :JJ?B@@@@@@@&&&&&&&@BGBPY&#5&&###7");
+    mvprintw(14 + y - 16, x, "     ^77B@@@@@@@@&&&&##BY^~5PB##B#&G.");
+    mvprintw(15 + y - 16, x, "      ^?&@@@@@@&&&#G55J:   ^YB###&@@^");
+    mvprintw(16 + y - 16, x, "   ~Y5GG&@@@@&&#GJ?J5P?!7!!:..7P#&&@!");
+    mvprintw(17 + y - 16, x, " :BY:. !&@&#BP5J?YB&#5J555GGGJ  .7#@:");
+    mvprintw(18 + y - 16, x, " ?&   .##G5YJ?Y5P#&@? ....^JJPB   GG");
+    mvprintw(19 + y - 16, x, " 5@Y:JBPJYY7~!JP#&&@J     .7:~&: .~");
+    mvprintw(20 + y - 16, x, "&@@@&G775J!!!YB#&&&@&:  .^~. !@:");
+    mvprintw(21 + y - 16, x, "55P5!.!JY!^!5B#&&&@@@!      !&J");
+    mvprintw(22 + y - 16, x, "     .:... .::^^~~~^^^..   .!^");
 }
 
 void player_tag(int x, int y, int hp, int mp, char *name)
@@ -185,11 +253,11 @@ void ennemi_tag(int x, int y, int hp, char *name)
 
 void show_attack_option(int x, int y, int option)
 {
-    mvprintw(1 + y, x + 5, "Bat Attack");
-    mvprintw(3 + y, x + 5, "Holy Citation");
-    mvprintw(5 + y, x + 5, "Jesus's kiss");
-    mvprintw(7 + y, x + 5, "Holy Prayer");
-    mvprintw(-1 + y + (option * 2), x, "-->");
+    mvprintw(1 + y + 7, x + 5, "Bat Attack");
+    mvprintw(3 + y + 7, x + 5, "Holy Citation");
+    mvprintw(5 + y + 7, x + 5, "Jesus's kiss");
+    mvprintw(7 + y + 7, x + 5, "Holy Prayer");
+    mvprintw(-1 + y + (option * 2) + 7, x, "-->");
 }
 
 void display_jesus(void)

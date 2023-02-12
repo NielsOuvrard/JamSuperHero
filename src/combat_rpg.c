@@ -10,6 +10,9 @@
 
 void player_rpg_art(int x, int y);
 void demon_rpg_art(int x, int y);
+void pentagram_rpg_art(int x, int y);
+void brimstone_rpg_art(int x, int y);
+void satan_rpg_art(int x, int y);
 void player_tag(int x, int y, int hp, int mp, char *name);
 void ennemi_tag(int x, int y, int hp, char *name);
 void show_attack_option(int x, int y, int option);
@@ -28,16 +31,16 @@ void Imput_rpg(int *option, int *enter)
     }
 }
 
-void attack(int *player_hp, int *player_mp, int *ennemi_hp, int ennemi_max_hp, int ennemi_attack, char *ennemi_name, int option, int x, int y)
+void attack(int *player_hp, int *player_mp, int *ennemi_hp, int ennemi_max_hp, int ennemi_attack, char *ennemi_name, int option, int x, int y, int *player_damage)
 {
     int dammage = 0, critique = 0, ennemi_option = 0;
     srand(time(NULL));
     if (option == 1) {
-        dammage = -10;
+        dammage = *player_damage;
         mvprintw(y + 20, x - 10, "Holybat does %d damage", dammage * -1);
     } if (option == 2) {
         if (*player_mp > 9) {
-            dammage = -10 + ((rand() % 21) * -1);
+            dammage = *player_damage + ((rand() % 21) * -1);
             (*player_mp) += -10;
             mvprintw(y + 20, x - 10, "Holybat does %d damage", dammage * -1);
         } else {
@@ -45,7 +48,7 @@ void attack(int *player_hp, int *player_mp, int *ennemi_hp, int ennemi_max_hp, i
         }
     }
     if (option == 3) {
-        if (*player_mp > 100) {
+        if (*player_mp >= 100) {
             mvprintw(y + 20, x - 10, "Holybat is full MP");
         } else {
             (*player_mp) += 30;
@@ -89,7 +92,7 @@ void attack(int *player_hp, int *player_mp, int *ennemi_hp, int ennemi_max_hp, i
         mvprintw(2 + y + 20, x - 10, "%s does %d damage", ennemi_name, dammage * -1);
     }
     if (ennemi_option == 1) {
-        dammage = ennemi_attack + ((rand() % 11) * -1);
+        dammage = ennemi_attack + ((rand() % ennemi_attack) * -1);
         mvprintw(2 + y + 20, x - 10, "%s does %d damage", ennemi_name, dammage * -1);
     }
     if (ennemi_option == 2) {
@@ -117,7 +120,7 @@ void attack(int *player_hp, int *player_mp, int *ennemi_hp, int ennemi_max_hp, i
 
 int combat_devil(int player_hp)
 {
-    int player_mp = 100, ennemi_hp = 50, ennemi_attack = -15;
+    int player_mp = 100, ennemi_hp = 50, ennemi_attack = -15, player_damage = -10;
     int option = 1, enter = 0;
     char *ennemi_name = "Devil";
     while (player_hp > 0 && ennemi_hp > 0) {
@@ -132,11 +135,119 @@ int combat_devil(int player_hp)
         show_attack_option(COLS / 2, LINES / 2, option);
         Imput_rpg(&option, &enter);
         if (enter == 1) {
-            attack(&player_hp, &player_mp, &ennemi_hp, 50, ennemi_attack, ennemi_name, option, COLS / 2, LINES / 2);
+            attack(&player_hp, &player_mp, &ennemi_hp, 50, ennemi_attack, ennemi_name, option, COLS / 2, LINES / 2, &player_damage);
             enter = 0;
         }
         usleep(100000);
     }
-    if (player_hp > 0) player_hp += 50;
+    if (player_hp > 0) player_hp += 30;
+    return player_hp;
+}
+
+int combat_pentagram(int player_hp)
+{
+    int player_mp = 100, ennemi_hp = 80, ennemi_attack = -10, player_damage = -10;
+    int option = 1, enter = 0;
+    char *ennemi_name = "Pentagram";
+    while (player_hp > 0 && ennemi_hp > 0) {
+        clear();
+        attron(COLOR_PAIR(7));
+        player_rpg_art(COLS / 2, LINES / 2);
+        player_tag(COLS / 2, LINES / 2, player_hp, player_mp, "Holybat");
+        attron(COLOR_PAIR(6));
+        pentagram_rpg_art(COLS / 2, LINES / 2);
+        attron(COLOR_PAIR(7));
+        ennemi_tag(COLS / 2, LINES / 2, ennemi_hp, ennemi_name);
+        show_attack_option(COLS / 2, LINES / 2, option);
+        Imput_rpg(&option, &enter);
+        if (enter == 1) {
+            attack(&player_hp, &player_mp, &ennemi_hp, 80, ennemi_attack, ennemi_name, option, COLS / 2, LINES / 2, &player_damage);
+            enter = 0;
+        }
+        usleep(100000);
+    }
+    if (player_hp > 0) player_hp += 30;
+    return player_hp;
+}
+
+int combat_brimstone(int player_hp)
+{
+    int player_mp = 100, ennemi_hp = 40, ennemi_attack = -20, player_damage = -10;
+    int option = 1, enter = 0;
+    char *ennemi_name = "Brimstone";
+    while (player_hp > 0 && ennemi_hp > 0) {
+        clear();
+        attron(COLOR_PAIR(7));
+        player_rpg_art(COLS / 2, LINES / 2);
+        player_tag(COLS / 2, LINES / 2, player_hp, player_mp, "Holybat");
+        attron(COLOR_PAIR(1));
+        brimstone_rpg_art(COLS / 2, LINES / 2);
+        attron(COLOR_PAIR(7));
+        ennemi_tag(COLS / 2, LINES / 2, ennemi_hp, ennemi_name);
+        show_attack_option(COLS / 2, LINES / 2, option);
+        Imput_rpg(&option, &enter);
+        if (enter == 1) {
+            attack(&player_hp, &player_mp, &ennemi_hp, 40, ennemi_attack, ennemi_name, option, COLS / 2, LINES / 2, &player_damage);
+            enter = 0;
+        }
+        usleep(100000);
+    }
+    if (player_hp > 0) player_hp += 30;
+    return player_hp;
+}
+
+int combat_satan(int player_hp)
+{
+    int player_mp = 100, ennemi_hp = 150, ennemi_attack = -10, player_damage = -10;
+    int option = 1, enter = 0, stage = 7, god_mode = 0;
+    char *ennemi_name = "SATAN";
+    while (player_hp > 0 && ennemi_hp > 0) {
+        clear();
+        if (god_mode == 1) {
+            attron(COLOR_PAIR(5));
+            mvprintw(-2 + LINES / 2 + 20, COLS / 2 - 10, "Holibat got Jesus's blessing");
+        }
+        attron(COLOR_PAIR(7));
+        player_rpg_art(COLS / 2, LINES / 2);
+        if (god_mode == 1) {
+            attron(COLOR_PAIR(5));
+            player_tag(COLS / 2, LINES / 2, player_hp, player_mp, "Holybat / Jesus");
+        } else {
+            player_tag(COLS / 2, LINES / 2, player_hp, player_mp, "Holybat");
+        }
+        attron(COLOR_PAIR(stage));
+        satan_rpg_art(COLS / 2, LINES / 2);
+        attron(COLOR_PAIR(7));
+        ennemi_tag(COLS / 2, LINES / 2, ennemi_hp, ennemi_name);
+        show_attack_option(COLS / 2, LINES / 2, option);
+        Imput_rpg(&option, &enter);
+        if (enter == 1) {
+            attack(&player_hp, &player_mp, &ennemi_hp, 150, ennemi_attack, ennemi_name, option, COLS / 2, LINES / 2, &player_damage);
+            enter = 0;
+        }
+        if (player_hp <= 0) {
+            player_hp = 999;
+            player_damage = -999;
+            player_mp = 999;
+            god_mode = 1;
+        }
+        if ((ennemi_hp < 50 && ennemi_hp > 0) || (god_mode == 1 && stage != 6)) {
+            stage = 6;
+            ennemi_hp = 666;
+            ennemi_attack = -666;
+            ennemi_name = "!!;$@TA|\\|&*";
+        } else if (ennemi_hp < 70 && stage != 6) {
+            stage = 3;
+            ennemi_attack = -35;
+        } else if (ennemi_hp < 100 && stage != 6) {
+            stage = 2;
+            ennemi_attack = -20;
+        } else if (ennemi_hp >= 100 && stage != 6){
+            stage = 7;
+            ennemi_attack = -10;
+        }
+        usleep(100000);
+    }
+    if (player_hp > 0) player_hp += 30;
     return player_hp;
 }
