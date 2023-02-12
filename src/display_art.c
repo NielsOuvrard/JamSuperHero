@@ -7,6 +7,52 @@
 
 #include "../include/my.h"
 
+void Bat_art(int x, int y, int decal)
+{
+    char str1[] = "    (_    ,_,    _) ";
+    char str2[] = "   / `'--) (--'` \\  ";
+    char str3[] = "  /  _,-'\\_/'-,_  \\ ";
+    char str4[] = " /.-'     '     '-.\\";
+    for (int i = 0; str1[i]; i++) mvaddch(1 + y - 13, decal + x + i - 110, str1[i]);
+    for (int i = 0; str2[i]; i++) mvaddch(2 + y - 13, decal + x + i - 110, str2[i]);
+    for (int i = 0; str3[i]; i++) mvaddch(3 + y - 13, decal + x + i - 110, str3[i]);
+    for (int i = 0; str4[i]; i++) mvaddch(4 + y - 13, decal + x + i - 110, str4[i]);
+}
+
+void citation_art(int x, int y, int *decal, int *go_right, int cit_index)
+{
+    char *citation[] = {
+        " Do not grieve, for the joy of the Lord is your strength.",
+        " For nothing will be impossible with God.",
+        " Let all that you do be done in love.",
+        " Hatred stirs up strife, But love covers all sins.",
+        " Jesus Wept.",
+        " For whoever calls on the name of the Lord shall be saved."
+    };
+
+    if (*go_right == 0) {   
+        mvprintw(0 + y - *decal - 5, x - 50, "%s", citation[cit_index]);
+        mvprintw(1 + y - *decal - 5, x - 50, "                                                         ");
+    }
+    if (*go_right == 1) {
+        mvprintw(0 + y - 10, x - 50 + *decal, "%s", citation[cit_index]);
+    }
+    if (*go_right == 0 && *decal > 4) {
+        *go_right = 1;
+        *decal = 0;
+        usleep(1000000);
+    }
+    if (*go_right == 1 && *decal > 50) {
+        *go_right = 2;
+    }
+    (*decal)++;
+    if (*go_right == 1) {
+        usleep(2000);
+    } else {
+        usleep(200000);
+    }
+}
+
 int Holybat_art(int x, int y, int decal)
 {
     clear();
@@ -191,7 +237,7 @@ void pentagram_rpg_art(int x, int y)
 
 void brimstone_rpg_art(int x, int y)
 {
-    mvprintw(1 + y - 16, x, "             .!??!.");
+    mvprintw(1 + y - 16, x, "             .!?}!.");
     mvprintw(2 + y - 16, x, "              ^@@~");
     mvprintw(3 + y - 16, x, "              :@@^");
     mvprintw(4 + y - 16, x, "        !&&&&&&@@&&&&&&!");
@@ -237,18 +283,20 @@ void satan_rpg_art(int x, int y)
 void player_tag(int x, int y, int hp, int mp, char *name)
 {
     mvprintw(0 + y - 10, x - 50, "____________");
-    mvprintw(1 + y - 10, x - 50, "  %s", name);
-    mvprintw(2 + y - 10, x - 50, "  HP = %d", hp);
-    mvprintw(3 + y - 10, x - 50, "  MP = %d", mp);
-    mvprintw(4 + y - 10, x - 50, "____________");
+    mvprintw(1 + y - 10, x - 50, "            ");
+    mvprintw(2 + y - 10, x - 50, "  %s", name);
+    mvprintw(3 + y - 10, x - 50, "  HP = %d", hp);
+    mvprintw(4 + y - 10, x - 50, "  MP = %d", mp);
+    mvprintw(5 + y - 10, x - 50, "____________");
 }
 
 void ennemi_tag(int x, int y, int hp, char *name)
 {
-    mvprintw(0 + y - 20, x, "____________");
-    mvprintw(1 + y - 20, x, "  %s", name);
-    mvprintw(2 + y - 20, x, "  HP = %d", hp);
-    mvprintw(3 + y - 20, x, "____________");
+    mvprintw(0 + y - 21, x, "____________");
+    mvprintw(1 + y - 21, x, "            ");
+    mvprintw(2 + y - 21, x, "  %s", name);
+    mvprintw(3 + y - 21, x, "  HP = %d", hp);
+    mvprintw(4 + y - 21, x, "____________");
 }
 
 void show_attack_option(int x, int y, int option)
