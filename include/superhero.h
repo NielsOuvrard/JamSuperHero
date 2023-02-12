@@ -28,6 +28,14 @@ typedef struct superhero {
     int decal_jesus;
 } superhero;
 
+typedef struct jeux {
+    int x;
+    int y;
+    int partie;
+    int combat;
+    char **map;
+    int deja_fait;
+} jeux;
 
 #define GRAVITY 2
 #define POS_X_PLAYER 5
@@ -85,3 +93,27 @@ void ahead_bat (superhero *data);
 void display_holybat(void);
 
 void display_jesus(void);
+
+// * //////////////////////////////////////////////////////////////////////// RPG COMBAT
+
+int combat_devil(int player_hp);
+
+int combat_pentagram(int player_hp);
+
+int combat_brimstone(int player_hp);
+
+int combat_satan(int player_hp);
+
+// * /////////////////////////////////////////////////////////////////////// RPG MAP
+
+void debut_rpg(char *filepath);
+
+void perso_left(jeux *perso);
+
+void perso_right(jeux *perso);
+
+void perso_down(jeux *perso);
+
+void perso_up(jeux *perso);
+
+void combat(jeux *perso);

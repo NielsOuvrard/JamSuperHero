@@ -129,3 +129,5 @@ int my_unsintlen (unsigned int nbr);
 int nbsize(int tmp);
 
 char *nbtstr (int tmp);
+
+char **my_str_to_word_array(char const *str);
