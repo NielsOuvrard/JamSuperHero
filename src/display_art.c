@@ -174,9 +174,8 @@ int Holybat_art(int x, int y, int decal)
     return getch();
 }
 
-int Jesus_art(int x, int y, int decal)
+void Jesus_art(int x, int y, int decal)
 {
-    clear();
     mvprintw(0 + y - 20, x - 40, "                 @@@@@@@@@@@@@@@@               ");
     mvprintw(1 + y - 20, x - 40, "             @@@@@@@@@@@@@@@@@@@@@@@            ");
     mvprintw(2 + y - 20, x - 40, "           @@@@@@@@           @@@@@@@@          ");
@@ -235,7 +234,6 @@ int Jesus_art(int x, int y, int decal)
     for (int i = 0; str6[i]; i++) mvaddch(30 + y - 20, x - 40 + decal + i, str6[i]);
     for (int i = 0; str7[i]; i++) mvaddch(31 + y - 20, x - 40 + decal + i, str7[i]);
     for (int i = 0; str8[i]; i++) mvaddch(32 + y - 20, x - 40 + decal + i, str8[i]);
-    return getch();
 }
 
 void player_rpg_art(int x, int y)
