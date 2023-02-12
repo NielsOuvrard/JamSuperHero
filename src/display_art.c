@@ -53,6 +53,18 @@ void citation_art(int x, int y, int *decal, int *go_right, int cit_index)
     }
 }
 
+void jesus_kiss(int x, int y, int decal)
+{
+   mvprintw(0 + y - 30 + decal, x - 40, "         ");
+   mvprintw(1 + y - 30 + decal, x - 40, "   .-.   ");
+   mvprintw(2 + y - 30 + decal, x - 40, " __| |__ ");
+   mvprintw(3 + y - 30 + decal, x - 40, "[__   __]");
+   mvprintw(4 + y - 30 + decal, x - 40, "   | |   ");
+   mvprintw(5 + y - 30 + decal, x - 40, "   | |   ");
+   mvprintw(6 + y - 30 + decal, x - 40, "   | |   ");
+   mvprintw(7 + y - 30 + decal, x - 40, "   '-'   ");
+}
+
 int Holybat_art(int x, int y, int decal)
 {
     clear();
